@@ -1,5 +1,6 @@
 <?php
-	setcookie('nom', 'Dymen', time() + 3600 * 24 * 365);
+	session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +17,7 @@
 	</head>
 
 	<body>
-	<?php
-		if (isset($_COOKIE['nom']))
-		{
-			?>
-				<p><?php echo 'Bonjour Mister ' . $_COOKIE['nom']; ?></p>
-			<?php
-		}
-	?>
-		
-		<p>Aller aux <a href="informations.php">informations</a></p>
+		<p><?php echo 'I remember you Mister ' . $_SESSION['nom']; ?></p>
 
 	</body>
 </html> 

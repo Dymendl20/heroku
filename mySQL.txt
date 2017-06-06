@@ -1,0 +1,443 @@
+///************************************************
+/////====================================
+////\\ 		Bases de données
+///======================================
+///************************************************
+//
+///////==============================================
+////\\ 		Moteur de Bases de données : MySQL
+///==================================================
+/// Les systèmes de gestion de bdd les plus usités open source, gratuits :
+//	*** MySQL
+//	* PostgreSQL
+//	* ORACLE
+//	* Microsoft SQLServer
+//	* SQLite
+//
+//// PHP fait la jonction entre vous et mySQL :
+//  		===>	 		===> 1			===> 2
+// Client		 Serveur			PHP				MySQL
+//		  	<===			<=== 4			<=== 3
+//
+// Principe :
+// Le client ou visiteur demande au serveur ("tiens donne moi le contenu de cette page"). 
+// Le serveur lui va faire appel au programme PHP qu'il a installé dans sa machine ("PHP c'est à toi de me générer la page que le visiteur m'a demandé"). 
+// PHP va appaler MySQL en lui envoyant une requette écrit en langage SQL.
+// MySQL va récupérer l'info dans sa bdd et va la ressortir et la renvoyer (3) à PHP. 
+// Ce dernier récupère l'info, la renvoyer au serveur qui l'envoi au client.
+//
+// 
+//// Exemples de requête SQL :
+// N°1
+// SELECT id, auteur, message, datemsg FROM livreor ORDER BY datemsg DESC
+// N°2
+// SELECT j.nom nom_jeu, p.prenom prenom_proprietaire
+// FROM proprietaires p
+// INNER JOIN jeux_video j
+// ON j.ID_proprietaire = p.ID
+// WHERE j.console = 'PC'
+// ORDER BY prix DESC
+// LIMIT 0, 10
+//
+// Résumé :
+// Il y a la bdd qui correspondrait au dossier.
+// La table qui correspond à un tableau de stockage de données.
+// Les colonnes appelées aussi champs et les entrées qui sont les lignes de chacuns des éléments du tableau.
+//
+// Allez sur :
+// wamp ==> phpMyAdmin ==> Bases de données ==> Créer une bdd ==> Créer.
+// Cliquer ensuite sur la bdd que l'on vient de créer pour rentrer dans la bdd créée...
+//  Dans Nouvelle table :
+// Nom (mettre le nom de la table voulue) ==> Nombre de colonnes (4 par exemple) ==> Exécuter.
+// Now define :
+// Nom ==> Type ==> Index ==> A.I ...
+// 
+// NB : varchar taille limite = 255.
+//
+// <?php
+$bdd = new PDO('mysql:localhost;dbname=test', 'root', '');
+// Récupère tous les champs dans la table jeux_video et dis moi tout ce qu'il y a dedans
+$reponse = $bdd->query('SELECT * FROM jeux_video');
+// fetch récupère une nvelle ligne à chaque fois
+while ($donnees = $reponse->fetch()) 
+{
+	echo '<p>' . $donnees['nom'] . '</p>';
+}
+
+?>
+//
+// <?php
+$bdd = new PDO('mysql:localhost;dbname=test', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$reponse = $bdd->query('SELECT console, nom FROM jeux_video');
+while ($donnees = $reponse->fetch()) 
+{
+	echo '<p>' . $donnees['console'] .'-' . $donnees['nom'] . '</p>';
+}
+
+?>
+//
+// <?php
+$bdd = new PDO('mysql:localhost;dbname=test', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$reponse = $bdd->query('SELECT console, nom, prix FROM jeux_video WHERE console="NES" OR console="PC" ORDER BY prix DESC LIMIT 3');
+while ($donnees = $reponse->fetch()) 
+{
+	echo '<p>' . $donnees['console'] .'-' . $donnees['nom'] . '-' . $donnees['prix'] . 'euros</p>';
+}
+?>
+//
+// Use commands INSERT, UPDATE & DELETE :
+// 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//

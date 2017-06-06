@@ -1,0 +1,339 @@
+***************** =========================================================
+***************** ============================================
+***************** 	Concevoir son site web avec PHP & MySQL
+***************** ============================================
+***************** ==========================================================
+// Attention quand on développe en PHP, ne jamais, jamais, jamais trust aux données envoyées par nos visiteurs parce que certains malintentionnés pourraient décider de modify dans le but de faire planter votre site ou même de prendre le contrôle de notre site.
+//
+//// Différences entre sites web STATIQUES & sites web DYNAMIQUES
+// Un site statique est un site conçu uniquement avec les langages :
+//	* HTML
+//	* CSS
+// Un site dynamique est un site qui utilise non seulement :
+//	* HTML
+//	* CSS
+//	plus
+// 	* PHP
+//	* MySQL
+// Donc un site dynamique est un site qu'on peut personnalisé en mettant par exemples le nombre de messages reçus, des notifiactions...
+//
+//
+//// Fonctionnement sites statiques
+// Client: notre laptop.
+// Visiteur: machine qui envoie des pages web demandés par les visiteurs.
+// Prenons l'exemple d'un serveur au resto. Je passe commande, il m'apporte ma commande.
+//
+//
+//// Fonctionnement sites dynamiques
+// Ici le serveur génère une page PHP en html css pour que le client puisse la lire.
+//
+//// Concurrence
+/// Langages	
+//	PHP
+//	Java
+// 	Python
+// 	Ruby
+//	C#
+//	...
+//
+//
+/// Bases de données
+//	MySQL
+// 	PostgreSQL
+//	ORACLE
+//	Microsoft SQL Server
+//	SQLite
+//	...
+//
+//
+// PHP ?
+// Hypertext Preprocessor, plus connu sous son sigle PHP (acronyme récursif), est un langage de programmation libre, principalement utilisé pour produire des pages Web dynamiques via un serveur HTTP, mais pouvant également fonctionner comme n'importe quel langage interprété de façon locale.	
+//
+/// Les bases de PHP
+/// Préparer son ordinateur 
+// Installer des programmes qui permettent de comprendre le code PHP.
+// 	* wamp si on est sur Windows
+//	* xampp si Linux
+//	* mampp si Mac iOS
+//
+// Packages nous permettant d'installer automatiquement des sous-programmes :
+// 	* Apache
+// 	* PHP
+//	* MySQL
+//
+// Installer ensuite ou utiliser un éditeur de texte. Tels que :
+//	* sublime text
+//	* php storm
+//	* atom
+//	* ...
+//
+//
+/// Installer les outils pour développer en PHP
+// Nous aurons besoin :
+//	* navigateur web (chrome, firefox, safari, opera...)= pour ragarder notre site web en PHP
+//	* éditeur de texte (sublime text, php storm...)
+//
+// plus ces 3 programmes:
+//	* apache (server web permettant de répondre aux requettes)
+//	* php (il permet de comprendre le langage php)
+//	* mysql (moteur de bdd, permet de stocker des infos)
+//
+//
+//\\//\\ 	Attention : quand on développe en PHP, on crée des fichiers .php 
+//\\//\\	impossible de lire depuis notre navigateur.
+//\\//\\	Il faut donc placer ses fichiers .php, dans le dossier d'apache www.
+//\\//\\	Pour qu'Apache puisse lire, traduire et interpréter le code en 
+//\\//\\	langage PHP.
+//\\//\\
+//\\//\\	Ne pas être étonné si l'url affiche :
+//\\//\\	http://localhost/phpMySql/test.html
+//
+// Le code php va s'insérer au milieu du code html.
+//
+//// Principe:
+// <!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test PHP Noah Dymen</title>
+	</head>
+	<body>
+		<h2>Page de test</h2>
+			<p>
+				Cette page contient du code HTML.<br />
+				<?php /* Insérer du code PHP ici */ ?>
+				Voici quelques petits tests:
+			</p>
+
+			<?php 
+			/* Insérer du code PHP ici */
+			regeg 
+			...
+			?>
+
+			<ul>
+				<li style="color: blue;" <?php /* mon code php ici */ ?>>Texte en bleu</li>
+				<li style="color: red;">Texte en rouge</li>
+				<li style="color: yellowgreen;">Texte en vert citron</li>
+			</ul>
+
+			<?php
+			/* Encore du PHP
+			Toujours du PHP */
+			?>
+	</body>
+</html> 
+//
+//
+// To do :
+// Couper la partie menu, la couper, l'enregistrer dans un new file .php...
+// Idem pour l'en-tête, le pied de page.
+//
+// Ecrire à leur place <? php include("menu.php"); ?>
+//
+//					   <? php include("entete.php"); ?>
+//
+//					   <? php include("pieddepage.php"); ?>
+//
+//
+///===============================
+////\\ 		Les variables 
+///===============================
+// Concept php calling variables, ptites zones de mémoires qui servent à 
+// stocker des infos.
+// Exemple : on peut stocker l'âge du visiteur ou encore son nom.
+// Une variable en PHP possède un nom et une valeur...
+//	<?php
+		$ageDuVisiteur = 20;
+	?>
+//
+//
+///===============================
+////\\ 		Les conditions 
+///===============================
+// Si mon visiteur est un membre alors affiche lui sa page membre.
+// Sinon propose lui de s'inscrire...
+// Grâce à ça on peut créer des sites web dynamiques, sites web qui s'adaptent en fonction des conditions, en fonction de nos visiteurs.
+//
+// Si ce n'est pas s'écrit= if (!$adulte){...;}else{...;}
+//
+// AND peut s'écrire= &&
+// OR = ||
+// if = si
+// else = sinon
+// else if = sinon si
+//
+//// Principe:
+// $adulte = true;
+
+	if ($adulte) 
+	{
+	?>
+		<h1>T'es adulte</h1>
+		...
+	<?php
+	}
+//
+//
+///===============================
+////\\ 		Les boucles  
+///===============================
+// Répéter un certain nombre de fois les mêmes instructions...
+// Elles permettent de répéter plusieurs instructions automatiquement plusieurs fois.
+// Par exemple, affiche moi les 10 messages destinés à l'utilisateur plutôt de
+// dire affiche message 1, message 2, message 3... Celà permet de condenser notre code et de simplifier la maintenance de notre site.
+//
+// foreach = pour chaque. à chaque tour de boucle
+// while = tant que 
+// for = pour
+//
+//// Principe:
+// <?php
+	$repetitions = 0;
+	while ($repetitions < 10)
+	{
+		echo '<p>Je ne suis pas un héros. ' .$repetitions. ' fois.</p>';
+		/*On peut faire de 2 ways :*/
+		$repetitions = $repetitions + 1;
+		/*oubien */
+		$repetitions ++;
+	}
+
+	for ($repetitions = 0; $repetitions < 20; $repetitions ++)
+	{
+		echo '<p>Je ne suis pas un héros. ' .$repetitions. ' fois.</p>';
+	}
+?> 
+//
+//
+///===============================
+////\\ 		Les fonctions 
+///===============================
+// Elles sont là chacunes pour rendre un service bien particuliers.
+// Exemple, il y a une fonction qui permet de mélanger au hasard une lettre d'un mot,
+// ou de retrouver la position d'un mot au sein d'une phrase.
+// Ce sont des éléments à qui on envoie en général une valeur et qui nous renvoie en retour après avoir fait un calcul.
+// 
+// 
+///======================================
+////\\ 		Les tableaux or Array
+///======================================
+// Ce sont des assemblages de variables...
+// Par exemple, 1 tableau de 10 cases est en fait 1 tableau qui contient 10 sous-variables
+//
+// Afficher le contenu d'un tableau = print_r. Mais sert juste pour débugger.
+// echo print_r($prenoms);
+//
+//// Principe:
+// <?php
+	/*$prenoms[0] = 'Dymen';
+	$prenoms[1] = 'Noah';
+	$prenoms[2] = 'Milie';
+	echo $prenoms[0];*/
+
+	/*$prenoms = array('Dymen', 'Noah', 'Milie');
+	echo print_r($prenoms);*/
+
+	/*$personne = array('nom' => 'Dymen', 'prenom' => 'Noah', 'age' => 99);
+	print_r($personne);*/
+
+	$noms = array('Dymen', 'Noah', 'Bem');
+	$personne = array('nom' => 'Dymen', 'prenom' => 'Noah', 'age' => 99);
+
+	/*for ($numero = 0; $numero < 3; $numero++)
+	{
+		echo '<p>' . $noms[$numero] . '</p>';
+	}*/
+
+	/*foreach ($noms as $nom)
+	{
+		echo '<p>' . $nom . '</p>';
+	}*/
+
+	/*foreach ($personne as $detail)
+	{
+		echo '<p>' . $detail . '</p>';
+	}*/
+
+	foreach ($noms as $libelle => $detail)
+	{
+		echo '<p>' .$libelle . ' vaut ' . $detail . '</p>';
+	}
+?> 
+//
+// Attributs !
+// action="" : indiquer vers quelle page le formulaire doit rediriger. Le nom de la page .php qui va réceptionner les données envoyées par l'utilisateur.
+//
+// method="" : indiquer avec quelle méthode d'envoi on va transférer les données... On a 2 valeurs possibles avec method: GET & POST.
+// POST : transférer le plus de données à travers 2 pages web.
+// GET : fait transiter les infos dans la barre d'adresse ou URL...
+//
+//
+/////======================================
+////\\ 		Variables super-globales
+///======================================
+// $_GET : valeurs envoyées par l'URL.
+// $_POST : contient sous forme d'Array ce qui est envoyé en formulaire.
+// $_SERVER : contient tant d'infos sur un server. print_r($_SERVER);
+// $_SESSION : 
+// <?php
+	session_start();
+	$_SESSION['nom'] = 'Dymen';
+	?>
+	<!DOCTYPE html>
+	<?php echo 'Bonjour Mister ' . $_SESSION['nom']; ?>
+//
+// index.php
+// <?php
+	session_start();
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test PHP Noah Dymen</title>
+		<style type="text/css">
+			body
+			{
+				background-color: yellowgreen;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p><?php echo 'I remember you Mister ' . $_SESSION['nom']; ?></p>
+
+	</body>
+</html> 
+//
+// informations.php
+// <?php
+	session_start();
+
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test PHP Noah Dymen</title>
+		<style type="text/css">
+			body
+			{
+				background-color: yellowgreen;
+			}
+		</style>
+	</head>
+
+	<body>
+		<p><?php echo 'I remember you Mister ' . $_SESSION['nom']; ?></p>
+
+	</body>
+</html> 
+//
+//
+////////////////////////////////// FIN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ FIN ///////////////////////////////////////
